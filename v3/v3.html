@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v3 - Cesium Eventos</title>
+  <link href="https://unpkg.com/cesium@1.111.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="https://unpkg.com/cesium@1.111.0/Build/Cesium/Cesium.js"></script>
+
+  <style>
+    html,body,#cesiumContainer{z-index:1;height:100%;margin:0;padding:0;background:#071024}
+    .ui-panel{position:absolute;left:12px;top:12px;z-index:1000;width:360px;background:rgba(2,6,23,0.92);padding:12px;border-radius:10px;color:#e6f0fb;box-shadow:0 10px 30px rgba(0,0,0,0.6);font-family:Inter, Arial, sans-serif;max-height:90vh;overflow:auto}
+    .ui-panel h2{margin:0 0 8px;color:#93c5fd}
+    .ui-panel label{display:block;font-size:13px;color:#9fb7d6;margin-top:8px;margin-bottom:6px}
+    .ui-panel input[type="text"], .ui-panel input[type="number"], .ui-panel input[type="file"]{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:#031826;color:#e6f0fb;box-sizing:border-box}
+    .ui-panel button{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:#3b82f6;color:#04263b}
+    .btn-danger{background:#ef4444;color:white}
+    .events-list{margin-top:12px}
+    .ev-row{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:8px}
+    .ev-thumb{width:44px;height:28px;border-radius:4px;background:#0b2230;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .ev-thumb img{max-width:100%;max-height:100%;object-fit:contain}
+    .ev-meta{flex:1}
+    .small{font-size:12px;color:#9fb7d6}
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <div class="ui-panel">
+    <h2>Eventos -- Adicionar / Editar</h2>
+
+    <label>Nome do Evento</label>
+    <input id="evtNome" type="text" placeholder="Ex : Feijoada GO">
+
+    <label>Latitude</label>
+    <input id="lat" type="number" step="0.000001" placeholder="-25.43">
+
+    <label>Longitude</label>
+    <input id="lon" type="number" step="0.000001" placeholder="-49.27">
+
+    <label>Icone (opcional)</label>
+    <input type="file" accept="image/*" id="iconUpload">
+
+    <button id="addBtn" class="btn-primary">Adicionar novo Evento</button>
+    <button id="saveEditBtn" class="btn-primary" style="display:none">Salvar Alteracoes</button>
+    <button id="cancelEditBtn" style="display:none">Cancelar edicao</button>
+
+    <div class="small" style="margin-top:8px">Icone padrao: <code>/mnt/data/image_2025-11-18_101051378.png</code></div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:12px 0" >
+
+    <div style="display:flex;justify-content: space-between;align-items:center">
+      <strong>Eventos Salvos</strong>
+      <button id="clearAll" class="btn-danger" style="width:auto;padding:6px 10px">Remover Todos</button>
+    </div>
+
+    <div id="eventsList" class="events-list"></div>
+  </div>
+
+   <script type="module" src="./js/main.js"></script>
+  
+</body>
+</html>
